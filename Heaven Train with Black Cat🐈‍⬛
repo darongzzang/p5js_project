@@ -1,0 +1,355 @@
+let x = 0;
+let y = 400;
+let d = 120;
+let dX1 = 0; 
+let dX2 = 0;
+let rains = [];
+let rainy;
+let l = 0;
+let g = 0;
+let k= 800;
+let j =1000;
+
+
+
+
+function setup() {
+  createCanvas(800, 1200);
+  
+  img1 = loadImage('무지개.png');
+  img2 = loadImage('무지개반전.png');
+  
+}
+
+function draw() {
+  background('white');
+  noStroke();
+  
+  
+  
+  
+  
+
+
+    
+  let from = color('#9DDEF0');
+  let to = color('#F4F7F8');
+  
+  for(let i = 0; i< 1200; i+=4){
+    let newColor = lerpColor(from, to, i/1200);
+    fill(newColor);
+    rect(0, i, 1200, 6);
+    
+
+   
+
+    // rain
+    
+            noStroke();
+           fill('#597496');
+           let t = frameCount / 60; // time update
+
+
+           for (let i = 0; i < random(4); i++) {
+             rains.push(new rain()); 
+
+
+          for (let drop of rains) {
+            drop.update(t); 
+            drop.display(); 
+          }
+         }
+
+           // class
+          function rain() {
+
+          this.X = 0;
+          this.Y = random(400, 450);
+          this.a = random(0, 2 * PI);
+          this.size = random(3,6 );
+
+
+          this.radius = sqrt(random(pow(width / 2, 2)));
+
+          this.update = function(time) {
+
+            let w = 0.6; // angular velocity
+            let angle = time * w + this.a;
+            this.X = width / 2 + this.radius * sin(angle);
+
+            // different size 
+            this.Y += pow(this.size, 5);
+
+            // delete
+            if (this.Y > 1200) {
+              let index = rains.indexOf(this);
+              rains.splice(index, 10);
+            }
+          };
+
+          this.display = function() {
+             ellipse(this.X, this.Y, this.size, this.size*0.5);
+          }
+      
+      }
+
+      
+     }
+  // rainbow 1
+  imageMode(CENTER);
+  let ratio = img2.width/img2.height;
+  image(img2, 550, 350, 500*ratio, 500);
+  
+   
+  
+      
+  //cat
+  fill('black');
+  triangle(380, 210, 340, 290, 420, 280);
+  triangle(520, 200, 480, 280, 560, 290);
+  ellipse(450, 360, 300,220);
+  
+  // pupil color
+  fill('yellow');
+  // left
+  arc(390, 350, 70, 50, radians(200), radians(340));
+  arc(390, 328, 70, 50, radians(20), radians(160));
+  // right
+  arc(510, 350, 70, 50, radians(200), radians(340));
+  arc(510, 328, 70, 50, radians(20), radians(160));
+  // eyes
+  dX1 = map(l, 0, 800, 380, 420);
+  fill('black');
+  arc(390, 339, 20, 50, radians(80), radians(280));
+  arc(400, 339, 20, 50, radians(100), radians(260));
+  arc(510, 339, 20, 50, radians(80), radians(280));
+  arc(520, 339, 20, 50, radians(100), radians(260));
+  
+  
+  // nose
+  fill('pink'); 
+  arc(450, 400, 50, 50, radians(240), radians(300));
+  //mustache
+  noFill();
+  stroke('white');
+  strokeWeight(7);
+  //right
+  arc(590, 420, 200, 100, radians(210), radians(330));
+  arc(570, 460, 200, 100, radians(210), radians(330));
+  //left
+  arc(310, 420, 200, 100, radians(210), radians(330));
+  arc(330, 460, 200, 100, radians(210), radians(330));
+  
+  // cat's body
+  noStroke();
+  fill('black');
+  ellipse(450, 600, 400, 300);
+  
+  //feet
+  let dx = 10*sin(millis()/250);
+  fill('black');
+  stroke('black');
+  strokeWeight(1);
+  beginShape();
+  curveVertex(590, 650);
+  curveVertex(590, 620);
+  curveVertex(590, 490);
+  curveVertex(630, 450);
+  curveVertex(670, 490);
+  curveVertex(660, 620);
+  curveVertex(660, 650);
+  endShape();
+  
+  // jelly(sole of the foot)
+  fill('pink');
+  noStroke()
+  beginShape();
+  curveVertex(630, 510);
+  curveVertex(610, 510);
+  curveVertex(620, 500);
+  curveVertex(630, 480);
+  curveVertex(640, 500);
+  curveVertex(650, 510);
+  curveVertex(630, 510);
+  endShape();
+  ellipse(608, 490, 10, 20);
+  ellipse(618, 470, 10, 20);
+  ellipse(642, 470, 10, 20);
+  ellipse(652, 490, 10, 20);
+  
+  let mx = mouseX - 300;
+  mx = constrain(mx, -100, 100);
+  
+  dX1 = map(mouseX - 300, -200, 200, -50, 0);
+  dX2 = map(mouseX - 300, -200, 200, -100, 50);
+  
+  
+  // white clouds(shadow)
+  noStroke();
+  fill('#E2F1F2')
+  circle(x+d*1.2+dX1,y+d*1.2, d*4);
+  circle(x+d*3+dX1, y+d*1.8, d*2.5);
+  circle(x+d*4+dX1, y+d*1.6, d*2);
+  circle(x+d*5.3+dX1, y+d*2.3, d*1.6);
+  // white clouds
+  fill('white');
+  circle(x+d+dX1,y+d*0.8, d*3);
+  circle(x+d*0.7+dX1,y+d*2, d*3);
+  circle(x+d*0.1+dX1,y+d*1.4, d*2.6);
+  circle(x+d*0.8+dX1, y+d*2.5, d*2);
+  circle(x+d*2+dX1, y+d*2.3, d*2.5);
+  circle(x+d*3+dX1, y+d*2.4, d*1.8);
+  circle(x+d*4+dX1, y+d*2.8, d*1.7);
+  circle(x+d*5+dX1, y+d*2.6, d*1.5);
+  
+  // rainbow2
+  image(img1, 200, 800, 600*ratio, 600 );
+  
+  
+  
+  // car
+  g-=5;
+  if (g<-950){
+    l = x;
+    g = y;
+  }
+    
+    push();
+    translate(200, 850);
+    rectMode(CENTER);
+    fill('#C1F51F');
+    rotate(PI/3);
+    stroke('#C1F51F');
+    strokeWeight(20);
+    strokeJoin(ROUND);
+    rect(l, g, 120, 150);
+    rect(l+40,g+10, 80, 250);
+    stroke('#A6D21C')
+    strokeWeight(8);
+    line(l+50, g+130, l+50, g-110);
+    noStroke();
+    fill('#A3CF1A');
+    rect(l-30, g-50, 50, 30);
+    rect(l-30, g, 50, 30);
+    rect(l-30, g+50, 50, 30);
+  
+  
+    fill('yellow');
+    triangle(l,g+220, l+40, g+220, l+20, g+240);
+    triangle(l, g+230, l+40, g+230, l+20, g+210);
+  
+    triangle(l+60,g+260, l+100, g+260, l+80, g+280);
+    triangle(l+60, g+270, l+100, g+270, l+80, g+250);
+  
+    triangle(l+120,g+300, l+160, g+300, l+140, g+320);
+    triangle(l+120, g+310, l+160, g+310, l+140, g+290);
+  
+    
+    pop();
+  
+ 
+  
+  // pink clouds(shadow)
+  fill('#EBDAE8');
+  circle(x+d*5.5+dX2, y+d*3.8, d*3);
+  circle(x+d*4+dX2, y+d*4.3, d*2);
+  circle(x+d*3+dX2, y+d*4.6, d*1.8);
+  // pink clouds
+  fill('#F9E7F6')
+  circle(x+d*6+dX2, y+d*3.8, d*3);
+  circle(x+d*7+dX2, y+d*4.2, d*3);
+  circle(x+d*5+dX2, y+d*4.8, d*2);
+  circle(x+d*6+dX2, y+d*4.6, d*2.5);
+  circle(x+d*4+dX2, y+d*4.6, d*2);
+  circle(x+d*3+dX2, y+d*4.8, d*1.5);
+  
+  // train
+  
+  stroke('#303245')
+  strokeWeight(15);
+  
+  line(0, 1095, 8000, 1095);
+  line(0, 1125, 8000, 1125);
+  
+  line(10, 1125, 30, 1095);
+  line(80, 1125, 100, 1095);
+  line(150, 1125, 170, 1095);
+  line(220, 1125, 240, 1095);
+  line(290, 1125, 310, 1095);
+  line(360, 1125, 380, 1095);
+  line(430, 1125, 450, 1095);
+  line(500, 1125, 520, 1095);
+  line(570, 1125, 590, 1095);
+  line(640, 1125, 660, 1095);
+  line(710, 1125, 730, 1095);
+  line(780, 1125, 800, 1095);
+  
+  k-=3;
+  if (k<-750){
+    k = 800;
+    j = 1000;
+  }
+  
+  fill('#FFC90E');
+  stroke('#FFC90E');
+  strokeWeight(10);
+  strokeJoin(ROUND);
+  rectMode(LEFT, TOP);
+  rect(k, j, 600, 100);
+  arc(k, j+104, 300, 200, radians(180), radians(270));
+  arc(k+600, j+104, 250, 200, radians(210), radians(360));
+  rect(k+20, j-40, 30, 60);
+  
+  
+  // When you press the graphic screen, the train lights up.
+  
+  if(mouseIsPressed == true){
+    
+    fill('#FFFEBE');
+  rect(k+20, j+20, 30, 40);
+  rect(k+60, j+20, 30, 40);
+  rect(k+100, j+20, 30, 40);
+  rect(k+140, j+20, 30, 40);
+  rect(k+180, j+20, 30, 40);
+  rect(k+220, j+20, 30, 40);
+  rect(k+260, j+20, 30, 40);
+  rect(k+300, j+20, 30, 40);
+  rect(k+340, j+20, 30, 40);
+  rect(k+380, j+20, 30, 40);
+  rect(k+420, j+20, 30, 40);
+  rect(k+460, j+20, 30, 40);
+  rect(k+500, j+20, 30, 40);
+  rect(k+540, j+20, 30, 40);
+  rect(k+580, j+20, 30, 40);
+  
+  }else{
+    fill('#303245');
+    rect(k+20, j+20, 30, 40);
+  rect(k+60, j+20, 30, 40);
+  rect(k+100, j+20, 30, 40);
+  rect(k+140, j+20, 30, 40);
+  rect(k+180, j+20, 30, 40);
+  rect(k+220, j+20, 30, 40);
+  rect(k+260, j+20, 30, 40);
+  rect(k+300, j+20, 30, 40);
+  rect(k+340, j+20, 30, 40);
+  rect(k+380, j+20, 30, 40);
+  rect(k+420, j+20, 30, 40);
+  rect(k+460, j+20, 30, 40);
+  rect(k+500, j+20, 30, 40);
+  rect(k+540, j+20, 30, 40);
+  rect(k+580, j+20, 30, 40);
+  }
+  
+  // train text
+  fill('white');
+  textSize(20);
+  textStyle(BOLD);
+  textAlign(LEFT, TOP);
+  textFont('Times New Roman');
+  text("HEAVEN", k+30, j+70);
+    
+
+
+  
+}
