@@ -1,0 +1,177 @@
+function setup() {
+  createCanvas(500, 400); 
+}
+
+function draw() {
+  background(205, 236, 232);
+  
+  // stroke color
+  stroke(47, 47, 47);
+  
+  // stroke size
+  strokeWeight(6)
+  
+  // lamp pole
+  line(170, 180, 170, 250);
+   
+  
+  
+  // lamp
+  fill(2,165,189);
+  circle(170, 250, 40);
+  fill(255);
+  rect(145, 140, 50, 40);
+  
+  // lamp(light part)
+  fill(13, 194, 215);
+  strokeWeight(1);
+  stroke(13, 194 ,215);
+  circle(172, 248, 26);
+  
+  
+  stroke(47, 47, 47);
+  
+  // lamp string
+  strokeWeight(3);
+  line(185, 180, 185, 195);
+  
+  // lamp string bottom circle
+  strokeWeight(5);
+  fill(47, 47, 47);
+  circle(185, 195,6);
+  
+  
+  
+ 
+   
+  
+  
+  // drawer color
+  
+  fill(123,78, 71);
+  strokeWeight(5);
+  
+  // drawer 
+  rect(100, 280, 100, 30);
+  rect(100, 250, 100, 30);
+  
+  // drawer handler
+  line(140, 265, 160, 265); //위 손잡이 , 선 길이 20
+  line(140, 295, 160, 295); //아래 손잡이 
+  
+  // drawer legs
+  fill(47, 47, 47)
+  rect(110, 310, 20,10);
+  rect(170, 310, 20,10);
+  
+  // on the drawer
+  fill(141, 197, 190);
+  rect(110, 240, 20, 10);
+  
+  // sofa(backrest)
+  fill(251, 199, 86);
+  rect(280, 180, 100, 80 );
+  
+  // sofa(cushion)
+  rect(280, 260, 100, 30);
+  rect(280, 290, 100, 20);
+  
+  // sofa(elbow rest)
+  rect(260, 250, 30, 60);
+  rect(370, 250, 30, 60);
+  
+  // sofa legs
+  fill(47, 47, 47)
+  rect(270, 310, 20, 10);
+  rect(370, 310, 20, 10);
+
+  
+  // sofa(point)
+  fill(252, 238, 206);
+  strokeWeight(4);
+  circle(330, 220, 12);
+  
+  // picture frame string
+  
+  line(330, 50, 300, 70);
+  line(330, 50, 360, 70);
+  
+  // frame border
+  fill(255);
+  strokeWeight(6);
+  rect(290, 70, 80, 60);
+  
+  
+  // picture border
+  strokeWeight(4);
+  fill(210);
+  rect(298, 78, 64, 44);
+  
+  // moon by a picture
+  fill(251, 199, 86);
+  strokeWeight(3);
+  circle(346, 90, 11);
+  
+
+
+  // shaded part from here
+  
+  // lamp string circle
+  noStroke();
+  fill(255);
+  circle(186, 193, 2);
+  
+  // lamp shadow
+  fill(215);
+  noStroke();
+  rect(148, 143, 15, 34);
+  
+  // drawer(light part)
+  stroke(139, 103, 98);
+  strokeWeight(3);
+  line(104, 254, 196, 254);
+  line(104, 284, 196, 284);
+  
+  // sofa(light part)
+  stroke(254, 224, 119);
+  line(284, 184, 376, 184);
+  line(294, 264, 366, 264);
+  line(264, 254, 286, 254);
+  line(374, 254, 396, 254);
+  
+  stroke(209, 158, 58);
+  line(294, 294, 366, 294);
+  
+
+  // flour expression
+  stroke(47, 47, 47);
+  strokeWeight(5);
+  line(90, 320, 410, 320);
+  line(420, 320, 430, 320);
+  line(180, 340, 190, 340);
+  line(200, 340, 240, 340);
+  
+  // brick expression
+  stroke(147, 194, 188);
+  line(110, 150, 110, 170);
+  line(80, 170, 140, 170);
+  line(100, 170, 100, 190);
+  line(130, 170, 130, 190);
+  line(90, 190, 140, 190);
+  line(120, 190, 120, 210);
+  line(100, 210, 130, 210);
+  
+  line(390, 140, 390, 160);
+  line(360, 160, 430, 160);
+  line(376, 160, 376, 175);
+  line(410, 160, 410, 180);
+  line(385, 180, 440, 180);
+  
+  
+    
+  
+
+  
+  
+
+}
