@@ -1,0 +1,322 @@
+// My final exam project in 2022-1
+// I was sad that the OST of my favorite anime wasn't coming out in album form, so I decided to make media album art.
+// To match the atmosphere of the song, the song starts off small in the beginning, but gets stronger when the electric guitar sound starts to come out.
+// The moon and buildings shake to match the volume of the song. I added it because I wanted to give it an equalizer feel.
+// The character was modeled after 'Haruhi', the main character of the Ouran High School social club, and created an animation and inserted it.
+// The inbetween(동화) of the animation is a little disappointing, but I put the meaning in making it.
+
+
+
+let sound;
+let amp;
+let fft;
+let angle = 0.0;
+let s = 900;
+let bColor = '#000247';
+// let oColor1 = color('#1433FE')
+// let oColor2 = color('#686DC2');
+// let lColor1 = color('#C9FAFF');
+// let lColor2 = color('#C3CCFF');
+
+
+
+
+var gif_loadImg, gif_createImg;
+
+// add sound
+function preload(){
+  sound = loadSound('질주.mp3');
+  
+// add character img
+  gif_createImg = createImg("질주.gif");
+  
+}
+
+function setup() {
+  createCanvas(800, 800);
+  
+// sound control
+  sound.play();
+  sound.setVolume(0.1);
+  
+// Preparation for Sound Effects
+  amp = new p5.Amplitude();
+  fft = new p5.FFT(0.95, 32);
+  
+  
+
+
+    
+    
+  
+  }
+
+// stars
+ function star(x, y, radius1, radius2, npoints) {
+  let angle = TWO_PI / npoints;
+  let halfAngle = angle / 2.0;
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += angle) {
+    let sx = x + cos(a) * radius2;
+    let sy = y + sin(a) * radius2;
+    vertex(sx, sy);
+    sx = x + cos(a + halfAngle) * radius1;
+    sy = y + sin(a + halfAngle) * radius1;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
+}
+
+function draw() {
+  background(255);
+  
+  let timing = map(sound.currentTime(), 0, sound.duration(), 0, 400);
+  
+ 
+  
+  let from = color('#383B69');
+  let to = color('#686DC2');
+  
+  for(let i = 0; i<800; i+=4){
+    let newColor = lerpColor(from, to, timing/1600);
+    noStroke();
+    fill(newColor);
+    rect(0, i, 800, 4);
+    
+    // fill(240, 251, 24, 50);
+  // for(let m = 0; m < 10; m++){
+  //   circle(400, 700 - timing, m * 30);
+  // }
+ 
+  }
+
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.2, height * 0.5);
+  rotate(frameCount / 50.0);
+  star(0, 0, 2, 15, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.4, height * 0.2);
+  rotate(frameCount / 50.0);
+  star(0, 0, 2, 15, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.8, height * 0.3);
+  rotate(frameCount / 50.0);
+  star(0, 0, 2, 15, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.2, height * 0.5);
+  rotate(frameCount / 80.0);
+  star(0, 0, 2, 10, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.4, height * 0.2);
+  rotate(frameCount / 80.0);
+  star(0, 0, 2, 10, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.8, height * 0.3);
+  rotate(frameCount / 80.0);
+  star(0, 0, 2, 10, 3);
+  pop();
+
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.7, height * 0.7);
+  rotate(frameCount / 60.0);
+  star(0, 0, 2, 10, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.7, height * 0.7);
+  rotate(frameCount / 60.0);
+  star(0, 0, 2, 10, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.6, height * 0.3);
+  rotate(frameCount / 60.0);
+  star(0, 0, 2, 6, 3);
+  pop();
+  
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.4, height * 0.2);
+  rotate(frameCount / 60.0);
+  star(0, 0, 2, 6, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.2, height * 0.4);
+  rotate(frameCount / 60.0);
+  star(0, 0, 2, 6, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.7, height * 0.4);
+  rotate(frameCount / 60.0);
+  star(0, 0, 2, 6, 3);
+  pop();
+  
+  push();
+  noStroke();
+  fill(250, 250, 250, 255-timing);
+  translate(width * 0.4, height * 0.7);
+  rotate(frameCount / 60.0);
+  star(0, 0, 2, 6, 3);
+  pop();
+
+ 
+  
+  // building(rects of navy color)
+  
+  let spectrum = fft.analyze();
+  let level = amp.getLevel();
+  
+    
+    noStroke();
+    fill(240, 251, 24, 36);
+    circle(400,  600-timing, level*3000+350);
+    fill(240, 251, 24, 48);
+    circle(400,  600-timing, level*3000+300);
+    fill(240, 251, 24, 80);
+    circle(400, 600-timing , level*3000+250);
+    fill(240, 251, 24, 150);
+    circle(400, 600-timing , level*3000+200);
+  
+  
+  // fill('#3B5FFC');
+    fill('#060733');
+    stroke('#2E3015');
+    strokeWeight(3);
+    let sWidth = 1000/14;
+    
+    for(let i in spectrum){
+      rect(i*sWidth, 600, sWidth-10, -spectrum[i]);
+    }
+  
+
+
+  
+  let step = 2*PI / 32;
+  
+//   push();
+//   translate(-200, 1200);
+//   rotate(radians(270))
+//   scale(5);
+//   beginShape();
+//   noStroke();
+//   fill('#381C8E');
+//   for(let i=5; i<15; i++){
+//     let angle = 2*PI/10 * (i-5);
+//     curveVertex( spectrum[i] * sin(angle), spectrum[i] * cos(angle)+100);
+//   }
+//   endShape(CLOSE);
+//   pop();
+  
+  
+  // bottom
+    noStroke();
+  fill('#00023D');
+  rect(0, 600, 800, 300);
+  
+  fill('#31345E');
+  rect(0, 620, 800, 300);
+  fill('#00023D');
+  rect(0, 650, 800, 300);
+    
+   
+// text
+  fill('#fafafa');
+    // textFont('Noto Sans KR')
+    noStroke();
+    textSize(28);
+    textStyle(NORMAL);
+    text("오란고교 사교클럽 ed", 440, 100);
+    textSize(38);
+    text("질주", 645, 145);
+  
+  noFill();
+  stroke(250);
+  strokeWeight(3);
+  rect(420, 50, 320, 130);
+  
+  // streetlamp
+  s -=7.8 ;
+  if (s < -1000){
+    s = 860;
+  }
+  fill('#00023D');
+  noStroke();
+  rect(s+15, 330, 20, 280);
+  rect(s, 330, 50, 80);
+  
+  fill('#EDF0A1');
+  rect(s+10, 340, 30, 60);
+  
+  fill('#00023D');
+  rect(s+20, 330, 10, 80);
+  rect(s, 360, 50, 10);
+  rect(s+10, 320, 30, 10);
+  
+  
+  
+
+    
+    
+  gif_createImg.position(250, 300);
+  
+  //Set to adjust the smooth value over time, 0.64 after 20.5 seconds, 0.85 after 34 seconds. 
+  if(sound.currentTime() > 20.5){
+    fft.smooth(0.64)
+  if(sound.currentTime() > 34){
+    fft.smooth(0.85) // console input value
+  }
+  
+// test~~
+//   fill('#52F797');
+//   let sWidth = 400/32;
+//   //폭에 해당하는 변수를 만듦
+  
+//   for(let i in spectrum){
+//     rect(i*sWidth, 0, sWidth, spectrum[i]);
+    
+//     console.log(sound.currentTime());
+//   }
+  //level에 값을더하면일정크기유지하면서움직이게할수있음
+  
+  }
+  
+  
+  
+  
+}
