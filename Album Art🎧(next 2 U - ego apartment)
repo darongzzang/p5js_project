@@ -1,0 +1,153 @@
+// Another final project.
+// In line with the music atmosphere of missing a broken-up lover, I added graffiti on a white converse that symbolizes the lover. 
+// Also, I added misaligned hands and branches to take advantage of the original album art atmosphere.
+// Sound waves at the top are fluctuating according to the sound.
+// You can see how far the music has been played through the white bar under the shoes.
+// You can check the size of the black converse for music sounds.
+
+
+let sound;
+let amp;
+let fft;
+
+
+// add sound
+function preload(){
+  sound = loadSound('next 2 U.mp3');
+
+}
+
+
+function setup() {
+  createCanvas(800, 800);
+  
+// sound volume control
+  sound.play();
+  sound.setVolume(0.08);
+
+
+// sound wave size control
+  amp = new p5.Amplitude();
+  fft = new p5.FFT(0.97, 32);
+  
+//image registration
+  img1 = loadImage('NextLogoo.png');
+  img2 = loadImage('BlackConverse.png');
+  img3 = loadImage('WhiteConverse.png');
+  img4 = loadImage('낙서.png');
+  img5 = loadImage('낙서1.png');
+  img6 = loadImage('next2u1.png');
+  img7 = loadImage('손목1.png');
+  img8 = loadImage('나무.png');
+  
+
+}
+
+
+function draw() {
+  background('#9E9E9C');
+  
+  
+  let step = 2*PI / 32;
+  
+  let spectrum = fft.analyze();
+  
+  let timing = map(sound.currentTime(), 0, sound.duration(), 0, 800);
+  
+   
+// tries😅
+//   //갈색 fft
+//    push();
+//   translate(200, -100);
+//   scale(14);
+//   beginShape();
+//   noStroke();
+  
+//   for(let i in spectrum){
+//     let angle = step * i;
+//     fill('#302521')
+//   curveVertex( spectrum[i]/2* cos(angle), spectrum[i]/2 * sin(angle));
+//   }
+//   endShape(CLOSE);
+//   pop();
+  
+//   //초록 fft
+//     push();
+//   translate(-600, -100);
+//   scale(18);
+//   beginShape();
+//   noStroke();
+  
+//   for(let i in spectrum){
+//     fill('#637756');
+//     let angle = step * i;
+//     curveVertex( spectrum[i]/2 * cos(angle), spectrum[i]/2 * sin(angle));
+//   }
+//   endShape(CLOSE);
+//   pop();
+  
+  
+// top green fft
+  push();
+  translate(0, -100);
+  scale(10);
+  beginShape();
+  noStroke();
+  
+  for(let i in spectrum){
+    let angle = step * i;
+    fill('#3B4F43')
+    curveVertex( spectrum[i]/2 * cos(angle), spectrum[i]/2 * sin(angle));
+  }
+  endShape(CLOSE);
+  pop();
+  
+// tree
+  push();
+  translate(0, 0);
+  rotate(radians(-20));
+  image(img8, 220, 480, 700*ratio, 700);
+  pop();
+  
+  let dx = 10 * sin(millis()/250);
+  
+  fill('#020202');
+  quad(80, 120, 60, 90, 110, 110, 130, 150);
+  quad(150, 220, 185, 140, 200, 160, 190, 240 ); 
+  
+// wrist 
+  image(img7, 210, 640, 310*ratio, 400);
+// hand
+  image(img6, 220, 560, 310*ratio, 370);
+  
+  
+  
+  
+
+  
+  
+  
+
+  
+  
+// logo
+  image(img1, 400, 300, 500*ratio, 500);
+  
+// bottom bar
+   noStroke();
+  fill('#fcfcfc');
+  rect(100, 700, timing/1.3, 10);
+  
+// black converse amp
+  let level = amp.getLevel();
+  
+  image(img2, 240, 610, level*4000*ratio+150, level*4000+150);
+  
+  image(img3, 510, 610, 310*ratio, 370);
+  image(img4, 510, 610, 300*ratio, 370);
+  image(img5, 510, 610, 300*ratio, 370);
+  
+
+
+
+}
